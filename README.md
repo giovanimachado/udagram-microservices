@@ -156,11 +156,18 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
    `kubectl port-forward service/reverseproxy 8080:8080`<br>
    `kubectl port-forward service/frontend 8100:8100`
   
+     ![App](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/5-udagram.PNG)    
+  
   To take the screenshot of the logs, run: `kubectl logs <pode name>`
 
     Screenshot:<br>
      
      ![logs](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/4.0-%20API-pod-logs_a.PNG)  
   
+I think you should use an
+`<addr>` element here instead.
 
+   ```bash
+   kubectl port-forward service/reverseproxy 8080:8080
+   ```
 
