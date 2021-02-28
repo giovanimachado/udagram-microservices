@@ -125,13 +125,42 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
    `kubectl apply -f ./service` <br>
    `kubectl apply -f ./deployment`
    
-    Screenshot:<br>
+    Screenshots:<br>
      
+     Pods: <br>
      ![Pods](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.1.1-kubectl-get-pods.PNG)
      
+     No sensitive information: <br>
      ![No sensitive information](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.1.2-kubectl-describe-services_a.PNG)
      
+* Screenshot of Kubernetes services shows a reverse proxy
+
+     ![everse proxy](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.2-Screenshot-shows-reverse-proxy.PNG)
+
+* Kubernetes services are replicated. At least one of the Kubernetes services has replicas: defined with a value greater than 1 in its [`deployment.yml`](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-deployment/Kubernetes/deployment/frontend-deployment.yaml) file.
+
+* Screenshot of Kubernetes cluster of command `kubectl describe hpa` has autoscaling configured with CPU metrics.
+ 
+  To create autoscale, run: `kubectl autoscale deployment backend-feed --cpu-percent=80 --min=2 --max=3` I decided to auscale the `feed` service.
+  
+    Screenshot:<br>
      
-   
+     ![Autoscale](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.3.2-kubectl-describe-hpa.PNG)  
 
 #### Debugging, Monitoring, and Logging
+
+* Screenshot of one of the backend API pod logs indicates user activity that is logged when an API call is made.
+
+  It is necessary to send requests to backend to generate the logs, then forward local ports for the reverseproxy and frontend services:
+  
+   `kubectl port-forward service/reverseproxy 8080:8080`<br>
+   `kubectl port-forward service/frontend 8100:8100`
+  
+  To take the screenshot of the logs, run: `kubectl logs <pode name>`
+
+    Screenshot:<br>
+     
+     ![logs](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/4.0-%20API-pod-logs_a.PNG)  
+  
+
+
