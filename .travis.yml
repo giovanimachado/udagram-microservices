@@ -19,7 +19,7 @@ install:
   - docker-compose -f udagram-deployment/Docker/docker-compose-build.yaml build --parallel
 
 after_success:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+  - if [[ "$TRAVIS_BRANCH" == "main" ]]; then
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin ;
     docker-compose -f udagram-deployment/Docker/docker-compose-build.yaml push ;
     fi
