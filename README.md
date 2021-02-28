@@ -85,7 +85,7 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     Dockerfiles:<br> 
       - [`/feed`](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-api-feed/Dockerfile)<br> 
       - [`/user`](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-api-user/Dockerfile)<br> 
-      - [fronend](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-frontend/Dockerfile)<br>
+      - [frontend](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-frontend/Dockerfile)<br>
       - [reverse proxy](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-deployment/Docker/Dockerfile)<br>
      
     Setup Docker Environment:
@@ -109,6 +109,29 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
      ![Travis CI interface](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/2.1-Travis-CI-interface_a.PNG)
 
 ### Service Orchestration with Kubernetes
-* 
+* A screenshots of `kubectl` commands show the Frontend and API projects deployed in Kubernetes.
+
+* The output of `kubectl get pods` indicates that the pods are running successfully with the STATUS value Running.
+
+* The output of `kubectl describe services` does not expose any sensitive strings such as database passwords.
+  
+  It is necessary to create a kubernetes cluster to fill these requirements. To create a cluster run:
+ 
+  `eksctl create cluster --name udagram-microservices --version 1.18 --nodegroup-name standard-workers --node-type t3.micro --nodes 6 --nodes-min 1 --nodes-max 6 --node-ami auto --region us-east-1`
+  
+  cd to [Kubernetes](https://github.com/giovanimachado/udagram-microservices/tree/main/udagram-deployment/Kubernetes) and run:
+  
+   `kubectl apply -f ./config` <br>
+   `kubectl apply -f ./service` <br>
+   `kubectl apply -f ./deployment`
+   
+    Screenshot:<br>
+     
+     ![Pods](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.1.1-kubectl-get-pods.PNG)
+     
+     ![No sensitive information](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/3.1.2-kubectl-describe-services_a.PNG)
+     
+     
+   
 
 #### Debugging, Monitoring, and Logging
