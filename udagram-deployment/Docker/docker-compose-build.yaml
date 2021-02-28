@@ -11,7 +11,7 @@ services:
   backend_feed:
     build:
       context: ../../udagram-api-feed
-    image: giovanimachado/udagram-api-user
+    image: giovanimachado/udagram-api-feed
   frontend:
     build:
       context: ../../udagram-frontend
