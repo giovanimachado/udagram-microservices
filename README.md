@@ -72,3 +72,43 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
     npm audit fix
     ```
 5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+
+## Project rubric
+### Containers and Microservices
+* `/feed` and `/user` backends are separated into independent projects.
+
+   - [`/feed`](https://github.com/giovanimachado/udagram-microservices/tree/main/udagram-api-feed) microservice! <br>
+   - [`/user`](https://github.com/giovanimachado/udagram-microservices/tree/main/udagram-api-user) microservice! 
+
+* Project includes Dockerfiles to successfully create Docker images for `/feed`, `/user` backends, project frontend, and reverse proxy. 
+
+    Dockerfiles:<br> 
+      - [`/feed`](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-api-feed/Dockerfile)<br> 
+      - [`/user`](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-api-user/Dockerfile)<br> 
+      - [fronend](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-frontend/Dockerfile)<br>
+      - [reverse proxy](https://github.com/giovanimachado/udagram-microservices/blob/main/udagram-deployment/Docker/Dockerfile)<br>
+     
+    Setup Docker Environment:
+    
+     cd to [Dockerfolder](https://github.com/giovanimachado/udagram-microservices/tree/main/udagram-deployment/Docker)
+    
+     run:  
+      `docker-compose -f docker-compose-build.yaml build --parallel` <br>
+      `docker-compose -f docker-compose-build.yaml push`
+    
+    Screenshot:<br>
+     
+     ![Dockerhub](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/1.2-Docker-hub.PNG)
+    
+
+### Independent Releases and Deployments
+* Include a [`.travis.yml`](https://github.com/giovanimachado/udagram-microservices/blob/main/.travis.yml) file for CI.
+
+    Screenshot:<br>
+     
+     ![Travis CI interface](https://github.com/giovanimachado/udagram-microservices/blob/main/screenshots/2.1-Travis-CI-interface_a.PNG)
+
+### Service Orchestration with Kubernetes
+* 
+
+#### Debugging, Monitoring, and Logging
