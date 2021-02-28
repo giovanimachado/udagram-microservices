@@ -1,0 +1,1 @@
+eksctl create cluster --name udagram-microservices --version 1.18 --nodegroup-name standard-workers --node-type t3.micro --nodes 6 --nodes-min 1 --nodes-max 6 --node-ami auto --region us-east-1
